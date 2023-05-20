@@ -30,9 +30,13 @@ function handlerSearch(e) {
       }
       renderCountries(data);
     })
-    .catch(() => {
-      Notify.failure('Oops, there is no country with that name');
-      clearInterface();
+    .catch(err => {
+      if (err.message === '404') {
+        Notify.failure('Oops, there is no country with that name');
+        clearInterface();
+      } else {
+        Notify.failure(`${err.message}`);
+      }
     });
 }
 

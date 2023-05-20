@@ -6,7 +6,7 @@ const params = new URLSearchParams({
   return fetch(`${BASE_URL}/name/${name}?${params}`)
     .then(resp => {
     if (!resp.ok) {
-      throw new Error(err);
+      throw new Error(resp.status);
     }
       return resp.json();
   });
